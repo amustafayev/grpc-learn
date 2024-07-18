@@ -1,0 +1,72 @@
+buildscript {
+    ext {
+        protobufVersion = '3.23.4'
+        protobufPluginVersion = '0.8.18'
+        grpcVersion = '1.58.0'
+        springBootVersion = '2.6.1'
+        springBootManagementVersion = '1.0.11.RELEASE'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${springBootManagementVersion}"
+    id 'com.google.protobuf' version "${protobufPluginVersion}"
+
+}
+
+group = 'az.example.org'
+version = '0.0.1-SNAPSHOT'
+
+
+sourceCompatibility = '8'
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //grpc
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation 'net.devh:grpc-server-spring-boot-starter:2.13.1.RELEASE'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+    generatedFilesBaseDir = "$projectDir/src/main/generated"
+
+    clean{
+        delete generatedFilesBaseDir
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "$projectDir/src/main/generated"
+            srcDir "$projectDir/src/main/java"
+        }
+    }
+}
