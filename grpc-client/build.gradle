@@ -24,29 +24,16 @@ sourceCompatibility = '8'
 repositories {
     mavenCentral()
 }
-//
-//dependencyManagement {
-//    imports {
-//        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.8"
-//    }
-//}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     //grpc
-    implementation ("io.grpc:grpc-protobuf:${grpcVersion}"){
-        exclude group: "io.grpc", module: "grpc-api"
-    }
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    implementation "io.grpc:grpc-api:${grpcVersion}"
 
-    implementation group: 'io.grpc', name: 'grpc-api', version: '1.58.1'
-
-
-    implementation("io.grpc:grpc-stub:${grpcVersion}"){
-        exclude group: "io.grpc", module: "grpc-api"
-    }
-//    implementation 'net.devh:grpc-server-spring-boot-starter:2.13.1.RELEASE'
     implementation 'net.devh:grpc-client-spring-boot-starter:2.13.1.RELEASE'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

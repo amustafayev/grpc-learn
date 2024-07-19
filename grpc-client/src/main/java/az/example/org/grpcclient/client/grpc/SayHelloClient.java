@@ -15,7 +15,7 @@ public class SayHelloClient {
 //    @GrpcClient("myHelloService")
 //    private MyHelloServiceGrpc.MyHelloServiceStub myServiceStub;
 
-    @EventListener(ContextRefreshedEvent.class)
+//    @EventListener(ContextRefreshedEvent.class)
     public void callSayHelloServer() {
 //
 //        StreamObserver<HelloResponse> responseObserver = new StreamObserver<HelloResponse>() {

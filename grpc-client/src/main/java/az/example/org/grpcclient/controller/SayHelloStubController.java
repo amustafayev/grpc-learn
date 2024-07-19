@@ -17,6 +17,7 @@ public class SayHelloStubController {
 
     @GetMapping
     public void sayHello() {
+        System.out.println("Say Hello");
         sayHelloClient.callSayHelloServer();
     }
 
