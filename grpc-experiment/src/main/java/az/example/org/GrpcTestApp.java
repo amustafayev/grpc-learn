@@ -12,13 +12,12 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class GrpTestApp {
+public class GrpcTestApp {
 
     private static final String PATH = "proto.out";
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException {
-
 
         org.example.grpc.Person person = org.example.grpc.Person
                 .newBuilder()

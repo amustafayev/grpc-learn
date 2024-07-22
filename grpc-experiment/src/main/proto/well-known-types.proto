@@ -1,0 +1,19 @@
+syntax = 'proto3';
+
+package well_known;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "org.example.grpc.well_known";
+
+
+message SampleMessage{
+  google.protobuf.Int32Value age = 1;
+  google.protobuf.Timestamp login_tame = 2;
+  optional int32 rank = 3;
+  reserved 4;
+  reserved "length", "message";
+}
+
