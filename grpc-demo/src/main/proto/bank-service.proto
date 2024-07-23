@@ -22,9 +22,9 @@ message AllAccounts{
 }
 
 message WithdrawRequest {
-  int32 accountId  = 1;
+  int32 accountId = 1;
   float amount = 2;
-  int32 partition  = 3;
+  int32 partition = 3;
 }
 
 message WithdrawResponse{
@@ -32,8 +32,35 @@ message WithdrawResponse{
   int32 order = 2;
 }
 
+message TransferRequest{
+  int32 from_account = 1;
+  int32 to_account = 2;
+  int32 amount = 3;
+
+}
+
+enum TransferState{
+  REJECTED = 0;
+  SUCCESS = 1;
+}
+
+message TransferResponse{
+  TransferState status = 1;
+  AccountBalance from_account = 2;
+  AccountBalance to_account = 3;
+}
+
+
 service BankService{
   rpc GetAccountBalance(BankAccountRequest) returns (AccountBalance);
   rpc GetAccounts(google.protobuf.Empty) returns (AllAccounts);
+
+  //server streaming
   rpc Withdraw(WithdrawRequest) returns (stream WithdrawResponse);
+}
+
+
+service TransferService{
+  //bi-directional communication
+  rpc Transfer(stream TransferRequest) returns(stream TransferResponse);
 }
