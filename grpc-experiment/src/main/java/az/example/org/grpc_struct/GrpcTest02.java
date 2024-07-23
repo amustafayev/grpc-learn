@@ -1,4 +1,4 @@
-package az.example.org;
+package az.example.org.grpc_struct;
 
 import org.example.grpc.Address;
 import org.example.grpc.School;

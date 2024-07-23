@@ -1,4 +1,4 @@
-package az.example.org;
+package az.example.org.grpc_struct;
 
 import com.google.protobuf.Int32Value;
 import com.google.protobuf.Timestamp;

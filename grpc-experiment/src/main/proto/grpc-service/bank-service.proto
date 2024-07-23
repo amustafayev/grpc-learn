@@ -1,0 +1,21 @@
+syntax = 'proto3';
+
+package grpc_service;
+
+option java_multiple_files = true;
+option java_package = "org.example.grpc.grpc_service";
+
+message BankAccountRequest{
+  int32 requestId = 1;
+}
+
+message AccountBalance{
+  float balance = 1;
+  string owner_name = 2;
+  string currency = 3;
+}
+
+
+service BankService{
+  rpc GetAccountBalance(BankAccountRequest) returns (AccountBalance);
+}

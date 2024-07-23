@@ -1,4 +1,4 @@
-package az.example.org;
+package az.example.org.grpc_struct;
 
 import az.example.org.model.JsonPerson;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -37,14 +37,16 @@ public class GrpcTestApp {
 
         JsonPerson jsonPerson = new JsonPerson("John", 30, true, "john@example.org", 434.434, 2323, -23);
 
+//
+//        json(jsonPerson);
+//        proto(person);
 
-        json(jsonPerson);
-        proto(person);
+        for (int i = 0; i < 5; i++) {
+            runTest("json", () -> json(jsonPerson));
+            runTest("proto", () -> proto(person));
+        }
 
-//        for (int i = 0; i < 5; i++) {
-//            runTest("json", () -> json(jsonPerson));
-//            runTest("proto", () -> proto(person));
-//        }
+        //1:1
 
     }
 
@@ -53,7 +55,7 @@ public class GrpcTestApp {
 
         try {
             byte[] byteArray = person.toByteArray();
-            System.out.println("proto byte length: " + byteArray.length);
+//            System.out.println("proto byte length: " + byteArray.length);
             Person.parseFrom(byteArray);
         } catch (InvalidProtocolBufferException e) {
             throw new RuntimeException(e);
@@ -64,7 +66,7 @@ public class GrpcTestApp {
     public static void json(JsonPerson person) {
         try {
             byte[] bytes = objectMapper.writeValueAsBytes(person);
-            System.out.println("json byte length: " + bytes.length);
+//            System.out.println("json byte length: " + bytes.length);
             objectMapper.readValue(bytes, JsonPerson.class);
         } catch (JsonProcessingException e) {
 

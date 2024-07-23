@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/grpc-client" />
+    <file type="web" url="file://$PROJECT_DIR$/grpc-demo" />
     <file type="web" url="file://$PROJECT_DIR$/grpc-experiment" />
     <file type="web" url="file://$PROJECT_DIR$/grpc-server" />
   </component>
