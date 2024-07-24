@@ -6,6 +6,7 @@ buildscript {
 		tomcatVersion = '6.0.53'
 		logbackVersion = '1.4.12'
 		jacksonVersion = '2.12.7.1'
+		jUnitVersion = '5.10.1'
 	}
 }
 
@@ -35,6 +36,8 @@ dependencies {
 	implementation "org.apache.tomcat:annotations-api:${tomcatVersion}"
 	implementation "ch.qos.logback:logback-classic:${logbackVersion}"
 	implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+	implementation "org.junit.jupiter:junit-jupiter-engine:${jUnitVersion}"
+	implementation "org.junit.jupiter:junit-jupiter-params:${jUnitVersion}"
 }
 
 protobuf {

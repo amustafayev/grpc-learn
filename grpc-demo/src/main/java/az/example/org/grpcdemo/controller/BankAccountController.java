@@ -31,11 +31,7 @@ public class BankAccountController extends BankServiceGrpc.BankServiceImplBase {
 
     @Override
     public void withdraw(WithdrawRequest request, StreamObserver<WithdrawResponse> responseObserver) {
-
         System.out.println("Withdrawing money from account: " + request.getAccountId());
-
-//        responseObserver.onError(new RuntimeException("no such account"));
-
         for (int i = 0; i < request.getAmount() / request.getPartition(); i++) {
             responseObserver.onNext(WithdrawResponse.newBuilder()
                     .setAmount(200)
@@ -44,4 +40,5 @@ public class BankAccountController extends BankServiceGrpc.BankServiceImplBase {
         }
         responseObserver.onCompleted();
     }
+
 }
