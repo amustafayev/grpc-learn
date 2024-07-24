@@ -9,9 +9,7 @@ import org.example.grpc.flow_control.RequestSize;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FlowControlControllerTest extends AbstractChannelTest {
 
     private final GrpcServer grpcServer = GrpcServer.create(new FlowControlController());
@@ -19,6 +17,7 @@ public class FlowControlControllerTest extends AbstractChannelTest {
 
     @BeforeAll
     public void setup() {
+        this.grpcServer.start();
         this.stub = FlowControlServiceGrpc.newStub(channel);
     }
 
