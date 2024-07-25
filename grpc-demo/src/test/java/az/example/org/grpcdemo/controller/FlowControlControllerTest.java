@@ -17,8 +17,22 @@ public class FlowControlControllerTest extends AbstractChannelTest {
 
     @BeforeAll
     public void setup() {
+        //server
         this.grpcServer.start();
+        //client channel for calling server
         this.stub = FlowControlServiceGrpc.newStub(channel);
+    }
+
+
+    @Test
+    public void testFlowControl() {
+
+        ResponseHandler responseHandler = new ResponseHandler();
+        StreamObserver<RequestSize> requestObserver = stub.getMessages(responseHandler);
+        responseHandler.setRequestObserver(requestObserver);
+        responseHandler.start();
+        responseHandler.await();
+
     }
 
     @AfterAll
@@ -26,16 +40,4 @@ public class FlowControlControllerTest extends AbstractChannelTest {
         this.grpcServer.stop();
     }
 
-    @Test
-    public void testFlowControl() {
-
-        ResponseHandler responseHandler = new ResponseHandler();
-        StreamObserver<RequestSize> requestObserver = stub.getMessages(responseHandler);
-
-        responseHandler.setRequestObserver(requestObserver);
-        responseHandler.start();
-        responseHandler.await();
-
-
-    }
 }
