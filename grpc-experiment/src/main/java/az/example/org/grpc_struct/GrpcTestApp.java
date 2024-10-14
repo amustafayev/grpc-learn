@@ -30,24 +30,23 @@ public class GrpcTestApp {
                 .setBankAccountNumber(2323)
                 .build();
 
+        //Serialize/deserialize
 //        serializer(person);
-//
 //        System.out.println(deserializer());
 
-
+        //Json data
         JsonPerson jsonPerson = new JsonPerson("John", 30, true, "john@example.org", 434.434, 2323, -23);
 
-//
+////    Test byte length
 //        json(jsonPerson);
 //        proto(person);
 
-        for (int i = 0; i < 5; i++) {
-            runTest("json", () -> json(jsonPerson));
-            runTest("proto", () -> proto(person));
-        }
-
+        //Test performance
+//        for (int i = 0; i < 5; i++) {
+//            runTest("json", () -> json(jsonPerson));
+//            runTest("proto", () -> proto(person));
+//        }
         //1:1
-
     }
 
 

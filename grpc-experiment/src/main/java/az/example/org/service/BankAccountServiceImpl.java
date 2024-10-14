@@ -15,11 +15,12 @@ public class BankAccountServiceImpl  extends BankServiceGrpc.BankServiceImplBase
 
         System.out.println("requestId: " + requestId);
 
-        AccountBalance build = AccountBalance.newBuilder().setBalance(3.4f)
+        AccountBalance response = AccountBalance.newBuilder()
+                .setBalance(3.4f)
                 .setCurrency("AZN")
                 .setOwnerName("Afgan")
                 .build();
-        responseObserver.onNext(build);
+        responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
 }
